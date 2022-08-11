@@ -2,7 +2,6 @@
 <html>
 <head>
     @using DgBooks.Models;
-
     @{
         ViewBag.UserAux = ViewBag.User;
 
@@ -33,16 +32,15 @@
 </head>
 <body>
     <section>
-        <header>
+        <header class="menu-principal">
             <div class="nLogo">
                 <a id="logo" href="#home"><img src="~/Images/Logo1.png" alt="Logo Image" /></a>
             </div>
 
             <nav class="main-nav">
                 <a href="@Url.Action("PantallaP", "Libros")">Home</a>
-                <a href="#generos">Generos</a>
                 <a href="@Url.Action("PantallaFavoritos", "Libros")">Favoritos</a>
-                <a href="#" disabled="disabled">Redes sociales</a>
+                @*<a href="@Url.Action("PantallaFavoritos", "Libros")">Autores</a>*@
             </nav>
 
             <nav class="sub-nav">
@@ -92,27 +90,7 @@
         @RenderBody()
         <hr />
     </div>
-
-    <div class="container body-content">
-        <div class="panel panel-default">
-            <div class="panel-heading">Generos</div>
-            <div class="panel-body">
-                <ul class="lista-generos">
-
-                    @*@if (MySession.Current.Generos.Count() > 0) {
-                        foreach (var item in MySession.Current.Generos)
-                        {
-                            <a href="@Url.Action("PantallaP","Libros", new { id=MySession.Current.IdUsuario, generoId=item.intIdGenero})">
-                                <button role="button" class="boton btn-action-icon"><i class="fas fa-info-circle"></i>@item.strNombreGenero</button>
-                            </a>
-                        }
-                    }*@
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
+    
     <footer>
         <div class="box">
             <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/tv1.PNG?raw=true" alt=""></a>

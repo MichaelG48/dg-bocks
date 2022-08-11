@@ -91,26 +91,12 @@ namespace DgBooks.Controllers
                     }
                 }
 
-                //MySession.Current.Generos = generoServis.GetGeneros();
-
-                List<Models.Genero> generos = new List<Models.Genero>();
-                foreach (var item in generoServis.GetGeneros())
-                {
-                    Models.Genero gen = new Models.Genero();
-                    gen.intIdGenero = item.intIdGenero;
-                    gen.strNombreGenero = item.strNombreGenero;
-                    generos.Add(gen);
-                }
-
-                MySession.Current.Generos = generos;
-
                 ViewBag.User = MySession.Current.Usuario;
                 return View(List);
             }
             catch(Exception ex)
             {
                 string err = ex.Message;
-                //return RedirectToAction("LogIn", "Usuario");
                 MySession.Current.MensageGeneral = "Error al cargar la ventana principal, intenta nuevamente.";
                 MySession.Current.TipoMensage = "error";
                 return RedirectToAction("ErrorPage", "Home");
@@ -136,7 +122,6 @@ namespace DgBooks.Controllers
             {
                 MySession.Current.MensageGeneral = "Sin resultados";
                 MySession.Current.TipoMensage = "info";
-
             }
             else
             {
@@ -156,13 +141,14 @@ namespace DgBooks.Controllers
             try
             {
                 int idLibro = (int)MySession.Current.intIdLibor;
-                //var user = usuarioServices.GetUsuarioById(idU);
                 var libro = services.GetLibroById((int)MySession.Current.intIdLibor);
                 var autor = autorServices.GetAutor(int.Parse(libro.intIdAutor.ToString()));
                 var persona = personaServices.GetPersona(int.Parse(autor.idPersona.ToString()));
+
                 ViewBag.Autor = persona;
                 ViewBag.User = MySession.Current.Usuario;
                 ViewBag.Year = int.Parse(libro.dtFechaPublicacion.Value.Year.ToString());
+
                 return View(libro);
             }
             catch (Exception ex)
@@ -204,17 +190,6 @@ namespace DgBooks.Controllers
             {
                 var librosFavs = services.LibrosFavs((int)MySession.Current.IdUsuario);
                 
-                List<Models.Genero> generos = new List<Models.Genero>();
-                foreach (var item in generoServis.GetGeneros())
-                {
-                    Models.Genero gen = new Models.Genero();
-                    gen.intIdGenero = item.intIdGenero;
-                    gen.strNombreGenero = item.strNombreGenero;
-                    generos.Add(gen);
-                }
-
-                MySession.Current.Generos = generos;
-
                 if (librosFavs.Count == 0)
                 {
                     MySession.Current.MensageGeneral = "Sin registros";
@@ -259,17 +234,19 @@ namespace DgBooks.Controllers
             }
         }
 
-        public ActionResult EliminarFavorito(int idLibro)
+        [HttpPost]
+        public ActionResult EliminarFavorito(int intIdLibor)
         {
             try
             {
                 var user = usuarioServices.GetUsuarioById((int)MySession.Current.IdUsuario);
-                var libro = services.GetLibroById(idLibro);
+                var libro = services.GetLibroById(intIdLibor);
                 var List = services.GetLibros();
                 var registro = services.LibroUsuarioEliminar(libro, user);
+
                 if (registro)
                 {
-                    MySession.Current.MensageGeneral = "Favorito agregado a su lista.";
+                    MySession.Current.MensageGeneral = "El libro ha sido eliminado de sus favoritos.";
                     MySession.Current.TipoMensage = "exito";
                 } else
                 {

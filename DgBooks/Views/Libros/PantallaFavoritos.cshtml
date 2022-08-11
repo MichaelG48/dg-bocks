@@ -15,7 +15,8 @@
                 {
                     foreach (var item in Model)
                     {
-                        using (Html.BeginForm())
+                        //using (Html.BeginForm())
+                        using (Html.BeginForm("EliminarFavorito", "Libros", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "" }))
                         {
                             @Html.AntiForgeryToken()
                             <a href="@Url.Action("EliminarFavorito","Libros", new { idLibro = item.intIdLibor })" class="link-action-icon">
