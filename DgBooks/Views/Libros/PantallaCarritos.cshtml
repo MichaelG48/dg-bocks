@@ -19,7 +19,7 @@
                         {
                             @Html.AntiForgeryToken()
                             <a href="@Url.Action("EliminarCarrito","Libros", new { idLibro = item.intIdLibor })" class="link-action-icon">
-                                <button role="button" class="boton btn-action-icon"><i class="fas fa-cart-arrow-down"></i></button>
+                               <i class="fas fa-cart-arrow-down boton btn-action-icon"></i>
                             </a>
 
                             <input type="text" name="intIdLibor" value="@Html.DisplayFor(modelItem => item.intIdLibor)" style="display:none" />

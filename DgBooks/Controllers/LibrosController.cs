@@ -292,7 +292,7 @@ namespace DgBooks.Controllers
                 var registro = services.LibroUsuarioEliminar(libro, user);
                 if (registro)
                 {
-                    MySession.Current.MensageGeneral = "Favorito agregado a su lista.";
+                    MySession.Current.MensageGeneral = "Favorito eliminado de su lista.";
                     MySession.Current.TipoMensage = "exito";
                 } else
                 {
