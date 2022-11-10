@@ -9,6 +9,14 @@
     <Property Name="strLinkFoto" Type="varchar" MaxLength="200" />
     <Property Name="strDescripcion" Type="varchar" MaxLength="500" />
   </EntityType>
+  <EntityType Name="CarritoUsuario">
+    <Key>
+      <PropertyRef Name="intidLibro" />
+      <PropertyRef Name="intIdUsuario" />
+    </Key>
+    <Property Name="intidLibro" Type="int" Nullable="false" />
+    <Property Name="intIdUsuario" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Genero">
     <Key>
       <PropertyRef Name="intIdGenero" />
@@ -77,6 +85,18 @@
       </Principal>
       <Dependent Role="Autor">
         <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarritoUsuario_Libro">
+    <End Role="Libro" Type="Self.Libro" Multiplicity="1" />
+    <End Role="CarritoUsuario" Type="Self.CarritoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libro">
+        <PropertyRef Name="intIdLibor" />
+      </Principal>
+      <Dependent Role="CarritoUsuario">
+        <PropertyRef Name="intidLibro" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -154,6 +174,7 @@
   </Association>
   <EntityContainer Name="DgBooksModelStoreContainer">
     <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CarritoUsuario" EntityType="Self.CarritoUsuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LibroGeneros" EntityType="Self.LibroGeneros" Schema="dbo" store:Type="Tables" />
@@ -163,6 +184,10 @@
     <AssociationSet Name="FK_Autor_Persona" Association="Self.FK_Autor_Persona">
       <End Role="Persona" EntitySet="Persona" />
       <End Role="Autor" EntitySet="Autor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarritoUsuario_Libro" Association="Self.FK_CarritoUsuario_Libro">
+      <End Role="Libro" EntitySet="Libro" />
+      <End Role="CarritoUsuario" EntitySet="CarritoUsuario" />
     </AssociationSet>
     <AssociationSet Name="FK_Libro_Autor" Association="Self.FK_Libro_Autor">
       <End Role="Autor" EntitySet="Autor" />

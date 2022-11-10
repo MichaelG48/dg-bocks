@@ -69,6 +69,11 @@
       <End Role="Libro" EntitySet="Libro" />
       <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
+    <EntitySet Name="CarritoUsuario" EntityType="DgBooksModel.CarritoUsuario" />
+    <AssociationSet Name="FK_CarritoUsuario_Libro" Association="DgBooksModel.FK_CarritoUsuario_Libro">
+      <End Role="Libro" EntitySet="Libro" />
+      <End Role="CarritoUsuario" EntitySet="CarritoUsuario" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Usuario">
     <Key>
@@ -112,6 +117,7 @@
     <NavigationProperty Name="Autor" Relationship="DgBooksModel.FK_Libro_Autor" FromRole="Libro" ToRole="Autor" />
     <NavigationProperty Name="Genero" Relationship="DgBooksModel.LibroGeneros" FromRole="Libro" ToRole="Genero" />
     <NavigationProperty Name="Usuario" Relationship="DgBooksModel.UsuarioLibro" FromRole="Libro" ToRole="Usuario" />
+    <NavigationProperty Name="CarritoUsuario" Relationship="DgBooksModel.FK_CarritoUsuario_Libro" FromRole="Libro" ToRole="CarritoUsuario" />
   </EntityType>
   <Association Name="FK_Libro_Autor">
     <End Type="DgBooksModel.Autor" Role="Autor" Multiplicity="0..1" />
@@ -132,5 +138,26 @@
   <Association Name="UsuarioLibro">
     <End Type="DgBooksModel.Libro" Role="Libro" Multiplicity="*" />
     <End Type="DgBooksModel.Usuario" Role="Usuario" Multiplicity="*" />
+  </Association>
+  <EntityType Name="CarritoUsuario">
+    <Key>
+      <PropertyRef Name="intidLibro" />
+      <PropertyRef Name="intIdUsuario" />
+    </Key>
+    <Property Name="intidLibro" Type="Int32" Nullable="false" />
+    <Property Name="intIdUsuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Libro" Relationship="DgBooksModel.FK_CarritoUsuario_Libro" FromRole="CarritoUsuario" ToRole="Libro" />
+  </EntityType>
+  <Association Name="FK_CarritoUsuario_Libro">
+    <End Type="DgBooksModel.Libro" Role="Libro" Multiplicity="1" />
+    <End Type="DgBooksModel.CarritoUsuario" Role="CarritoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libro">
+        <PropertyRef Name="intIdLibor" />
+      </Principal>
+      <Dependent Role="CarritoUsuario">
+        <PropertyRef Name="intidLibro" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

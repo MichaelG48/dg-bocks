@@ -74,5 +74,13 @@
         <ScalarProperty Name="intIdLibor" ColumnName="intidLibro" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="CarritoUsuario">
+      <EntityTypeMapping TypeName="DgBooksModel.CarritoUsuario">
+        <MappingFragment StoreEntitySet="CarritoUsuario">
+          <ScalarProperty Name="intIdUsuario" ColumnName="intIdUsuario" />
+          <ScalarProperty Name="intidLibro" ColumnName="intidLibro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

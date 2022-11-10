@@ -292,7 +292,7 @@ namespace DgBooks.Controllers
                 var registro = services.LibroUsuarioEliminar(libro, user);
                 if (registro)
                 {
-                    MySession.Current.MensageGeneral = "Favorito agregado a su lista.";
+                    MySession.Current.MensageGeneral = "Favorito eliminado de su lista.";
                     MySession.Current.TipoMensage = "exito";
                 } else
                 {
@@ -308,6 +308,107 @@ namespace DgBooks.Controllers
                 MySession.Current.TipoMensage = "error";
 
                 return RedirectToAction("PantallaFavoritos");
+            }
+        }
+
+        #endregion
+
+
+
+        #region Carrito
+
+        [HttpGet]
+        public ActionResult PantallaCarritos()
+        {
+            try
+            {
+                var librosShop = services.LibrosShop((int)MySession.Current.IdUsuario);
+
+                List<Models.Genero> generos = new List<Models.Genero>();
+                foreach (var item in generoServis.GetGeneros())
+                {
+                    Models.Genero gen = new Models.Genero();
+                    gen.intIdGenero = item.intIdGenero;
+                    gen.strNombreGenero = item.strNombreGenero;
+                    generos.Add(gen);
+                }
+
+                MySession.Current.Generos = generos;
+
+                if (librosShop.Count == 0)
+                {
+                    MySession.Current.MensageGeneral = "Sin registros";
+                    MySession.Current.TipoMensage = "info";
+                }
+                return View(librosShop);
+            }
+            catch (Exception ex)
+            {
+                MySession.Current.MensageGeneral = "Error al visualizar sus pre-compras, intenta nuevamente.";
+                MySession.Current.TipoMensage = "error";
+                return RedirectToAction("ErrorPage", "Home");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult PantallaCarritos(string intIdLibor)
+        {
+            MySession.Current.intIdLibor = Convert.ToInt32(intIdLibor);
+            return RedirectToAction("PantallaDetalles", "Libros");
+        }
+
+        public ActionResult AgregarCarrito(int idLibro)
+        {
+            try
+            {
+                var user = usuarioServices.GetUsuarioById((int)MySession.Current.IdUsuario);
+                var libro = services.GetLibroById(idLibro);
+                var List = services.GetLibros();
+                var registro = services.LibroUsuarioAgregar(libro, user);
+
+                MySession.Current.MensageGeneral = "Libro agregado a su carrito.";
+                MySession.Current.TipoMensage = "exito";
+                return RedirectToAction("PantallaDetalles");
+                //Retornar para ver los detalles de la compra
+            }
+            catch
+            {
+                MySession.Current.MensageGeneral = "Error al agregar sus libro, intenta nuevamente.";
+                MySession.Current.TipoMensage = "error";
+                return RedirectToAction("ErrorPage", "Home");
+            }
+        }
+
+        public ActionResult EliminarCarrito(int idLibro)
+        {
+            try
+            {
+                var user = usuarioServices.GetUsuarioById((int)MySession.Current.IdUsuario);
+                var libro = services.GetLibroById(idLibro);
+                var List = services.GetLibros();
+                var registro = services.LibroUsuarioEliminar(libro, user);
+                if (registro)
+                {
+                    MySession.Current.MensageGeneral = "Libro eliminado de su carrito.";
+                    MySession.Current.TipoMensage = "exito";
+                }
+                else
+                {
+                    MySession.Current.MensageGeneral = "No se pudo eliminar de su lista de compras, intente nuevamente.";
+                    MySession.Current.TipoMensage = "error";
+                }
+
+                return RedirectToAction("PantallaCarritos");
+                //Retornar para ver la lista del carrito
+
+            }
+            catch
+            {
+                MySession.Current.MensageGeneral = "Ocurrió un error al intentar eliminar.";
+                MySession.Current.TipoMensage = "error";
+
+                return RedirectToAction("PantallaCarritos");
             }
         }
 

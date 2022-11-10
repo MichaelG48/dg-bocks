@@ -58,3 +58,15 @@ C:\Users\alex1\OneDrive\Escritorio\Libreril\dg-bocks\DgBooksDB\obj\Debug\DgBooks
 C:\Users\alex1\OneDrive\Escritorio\Libreril\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CopyComplete
 C:\Users\alex1\OneDrive\Escritorio\Libreril\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.dll
 C:\Users\alex1\OneDrive\Escritorio\Libreril\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.pdb
+E:\libreri\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.dll.config
+E:\libreri\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.dll
+E:\libreri\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.pdb
+E:\libreri\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.dll
+E:\libreri\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.SqlServer.dll
+E:\libreri\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.xml
+E:\libreri\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.SqlServer.xml
+E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.AssemblyReference.cache
+E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CoreCompileInputs.cache
+E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CopyComplete
+E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.dll
+E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.pdb

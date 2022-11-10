@@ -14,6 +14,14 @@
           <Property Name="strLinkFoto" Type="varchar" MaxLength="200" />
           <Property Name="strDescripcion" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="CarritoUsuario">
+          <Key>
+            <PropertyRef Name="intidLibro" />
+            <PropertyRef Name="intIdUsuario" />
+          </Key>
+          <Property Name="intidLibro" Type="int" Nullable="false" />
+          <Property Name="intIdUsuario" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Genero">
           <Key>
             <PropertyRef Name="intIdGenero" />
@@ -82,6 +90,18 @@
             </Principal>
             <Dependent Role="Autor">
               <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarritoUsuario_Libro">
+          <End Role="Libro" Type="Self.Libro" Multiplicity="1" />
+          <End Role="CarritoUsuario" Type="Self.CarritoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libro">
+              <PropertyRef Name="intIdLibor" />
+            </Principal>
+            <Dependent Role="CarritoUsuario">
+              <PropertyRef Name="intidLibro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -159,6 +179,7 @@
         </Association>
         <EntityContainer Name="DgBooksModelStoreContainer">
           <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarritoUsuario" EntityType="Self.CarritoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LibroGeneros" EntityType="Self.LibroGeneros" Schema="dbo" store:Type="Tables" />
@@ -168,6 +189,10 @@
           <AssociationSet Name="FK_Autor_Persona" Association="Self.FK_Autor_Persona">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Autor" EntitySet="Autor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarritoUsuario_Libro" Association="Self.FK_CarritoUsuario_Libro">
+            <End Role="Libro" EntitySet="Libro" />
+            <End Role="CarritoUsuario" EntitySet="CarritoUsuario" />
           </AssociationSet>
           <AssociationSet Name="FK_Libro_Autor" Association="Self.FK_Libro_Autor">
             <End Role="Autor" EntitySet="Autor" />
@@ -267,6 +292,11 @@
             <End Role="Libro" EntitySet="Libro" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <EntitySet Name="CarritoUsuario" EntityType="DgBooksModel.CarritoUsuario" />
+          <AssociationSet Name="FK_CarritoUsuario_Libro" Association="DgBooksModel.FK_CarritoUsuario_Libro">
+            <End Role="Libro" EntitySet="Libro" />
+            <End Role="CarritoUsuario" EntitySet="CarritoUsuario" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Usuario">
           <Key>
@@ -310,6 +340,7 @@
           <NavigationProperty Name="Autor" Relationship="DgBooksModel.FK_Libro_Autor" FromRole="Libro" ToRole="Autor" />
           <NavigationProperty Name="Genero" Relationship="DgBooksModel.LibroGeneros" FromRole="Libro" ToRole="Genero" />
           <NavigationProperty Name="Usuario" Relationship="DgBooksModel.UsuarioLibro" FromRole="Libro" ToRole="Usuario" />
+          <NavigationProperty Name="CarritoUsuario" Relationship="DgBooksModel.FK_CarritoUsuario_Libro" FromRole="Libro" ToRole="CarritoUsuario" />
         </EntityType>
         <Association Name="FK_Libro_Autor">
           <End Type="DgBooksModel.Autor" Role="Autor" Multiplicity="0..1" />
@@ -330,6 +361,27 @@
         <Association Name="UsuarioLibro">
           <End Type="DgBooksModel.Libro" Role="Libro" Multiplicity="*" />
           <End Type="DgBooksModel.Usuario" Role="Usuario" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CarritoUsuario">
+          <Key>
+            <PropertyRef Name="intidLibro" />
+            <PropertyRef Name="intIdUsuario" />
+          </Key>
+          <Property Name="intidLibro" Type="Int32" Nullable="false" />
+          <Property Name="intIdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Libro" Relationship="DgBooksModel.FK_CarritoUsuario_Libro" FromRole="CarritoUsuario" ToRole="Libro" />
+        </EntityType>
+        <Association Name="FK_CarritoUsuario_Libro">
+          <End Type="DgBooksModel.Libro" Role="Libro" Multiplicity="1" />
+          <End Type="DgBooksModel.CarritoUsuario" Role="CarritoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libro">
+              <PropertyRef Name="intIdLibor" />
+            </Principal>
+            <Dependent Role="CarritoUsuario">
+              <PropertyRef Name="intidLibro" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -410,6 +462,14 @@
               <ScalarProperty Name="intIdLibor" ColumnName="intidLibro" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="CarritoUsuario">
+            <EntityTypeMapping TypeName="DgBooksModel.CarritoUsuario">
+              <MappingFragment StoreEntitySet="CarritoUsuario">
+                <ScalarProperty Name="intIdUsuario" ColumnName="intIdUsuario" />
+                <ScalarProperty Name="intidLibro" ColumnName="intidLibro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

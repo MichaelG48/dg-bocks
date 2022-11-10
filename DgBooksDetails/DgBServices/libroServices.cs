@@ -184,5 +184,26 @@ namespace DgBooksDetails.DgBServices
             }
         }
 
+        public List<Libro> LibrosShop(int idU)
+        {
+
+            List<Libro> libros = new List<Libro>();
+            try
+            {
+                using (var context = new DgBooksEntities())
+                {
+                    var UsuarioEn = context.Usuario.FirstOrDefault(p => p.intIdUsuario == idU);
+                    libros = UsuarioEn.Libro.ToList();
+                    return libros;
+                }
+            }
+            catch (Exception ex)
+            {
+                string err = ex.Message;
+                return null;
+
+            }
+        }
+
     }
 }

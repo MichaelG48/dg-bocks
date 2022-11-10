@@ -30,5 +30,6 @@ namespace DgBooksDB
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Libro> Libro { get; set; }
+        public virtual DbSet<CarritoUsuario> CarritoUsuario { get; set; }
     }
 }
