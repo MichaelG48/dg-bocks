@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f4f8423c57734164a6551a347285839b" Name="Diagram1" ZoomLevel="85">
+      <Diagram DiagramId="f4f8423c57734164a6551a347285839b" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="DgBooksModel.Autor" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DgBooksModel.Genero" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DgBooksModel.Persona" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
@@ -15,6 +15,8 @@
         <AssociationConnector Association="DgBooksModel.FK_Libro_Autor" />
         <AssociationConnector Association="DgBooksModel.LibroGeneros" />
         <AssociationConnector Association="DgBooksModel.UsuarioLibro" />
+        <EntityTypeShape EntityType="DgBooksModel.CarritoUsuario" Width="1.5" PointX="7.375" PointY="5.625" />
+        <AssociationConnector Association="DgBooksModel.FK_CarritoUsuario_Libro" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

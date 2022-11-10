@@ -19,6 +19,7 @@ namespace DgBooksDB
         {
             this.Genero = new HashSet<Genero>();
             this.Usuario = new HashSet<Usuario>();
+            this.CarritoUsuario = new HashSet<CarritoUsuario>();
         }
     
         public int intIdLibor { get; set; }
@@ -37,5 +38,7 @@ namespace DgBooksDB
         public virtual ICollection<Genero> Genero { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> Usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CarritoUsuario> CarritoUsuario { get; set; }
     }
 }

@@ -197,6 +197,7 @@
     <Content Include="Views\Home\ErrorPage.cshtml" />
     <Content Include="Views\Libros\PantallaFavoritos.cshtml" />
     <Content Include="Views\Libros\Busqueda.cshtml" />
+    <Content Include="Views\Libros\PantallaCarritos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

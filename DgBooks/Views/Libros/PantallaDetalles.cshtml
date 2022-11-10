@@ -51,6 +51,10 @@
                             <button role="button" class="boton"><i class="fas fa-heart"></i></button>
                         </a>
 
+                        <a href="@Url.Action("AgregarCarrito","Libros", new { idLibro=Html.DisplayFor(model=>model.intIdLibor)})">
+                            <button role="button" class="boton"><i class="fas fa-shopping-cart"></i>Agregar al carrito</button>
+                        </a>
+
                         <a href="@Url.Action("AutorDetail","Autor", new { id=Html.DisplayFor(model=>model.intIdAutor), idU=ViewBag.User.intIdUsuario})">
                             <button role="button" class="boton"><i class="fas fa-info-circle"></i>Más información</button>
                         </a>
@@ -58,6 +62,8 @@
                         <a href="@Url.Action("Descargar","Libros", new { id=Html.DisplayFor(model=>model.intIdLibor)})">
                             <button role="button" class="boton"><i class="fas fa-download"></i>Descargar</button>
                         </a>
+
+
                     </div>
 
                     <div class="col-2">
