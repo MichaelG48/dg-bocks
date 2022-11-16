@@ -36,7 +36,7 @@ namespace DgBooksDetails.DgBServices
                 using (var context = new DgBooksEntities())
                 {
                     var genero = context.Genero.FirstOrDefault(p => p.intIdGenero == id);
-
+               
                     var ListLibrosEn = context.Libro.ToList().Where(p => p.Genero.Contains(genero));
 
                     foreach (Libro item in ListLibrosEn)
