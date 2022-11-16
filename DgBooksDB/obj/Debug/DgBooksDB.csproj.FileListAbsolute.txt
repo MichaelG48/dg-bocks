@@ -70,6 +70,20 @@ E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CoreCompileInputs.cache
 E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CopyComplete
 E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.dll
 E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.pdb
+<<<<<<< HEAD
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.dll.config
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.dll
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.pdb
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.dll
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.xml
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.AssemblyReference.cache
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CoreCompileInputs.cache
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CopyComplete
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.dll
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.pdb
+=======
 E:\LIBRERIA\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.dll.config
 E:\LIBRERIA\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.dll
 E:\LIBRERIA\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.pdb
@@ -82,3 +96,4 @@ E:\LIBRERIA\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CoreCompileInputs.cach
 E:\LIBRERIA\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CopyComplete
 E:\LIBRERIA\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.dll
 E:\LIBRERIA\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.pdb
+>>>>>>> 2a41c7fe0704aae96e8242cd2c50846391195053
