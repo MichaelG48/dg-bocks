@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Genero.cs" />
+    <Compile Include="Models\LibroGeneros.cs" />
     <Compile Include="Models\MySession.cs" />
     <Compile Include="Models\newPassword.cs" />
     <Compile Include="Models\newUser.cs" />
