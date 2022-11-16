@@ -413,5 +413,28 @@ namespace DgBooks.Controllers
         }
 
         #endregion
+
+        #region Ventas
+        [HttpPost]
+        public ActionResult PantallaVenta(string intIdLibor)
+        {
+            MySession.Current.MensageGeneral = "";
+            MySession.Current.TipoMensage = "";
+
+            MySession.Current.intIdLibor = Convert.ToInt32(intIdLibor);
+            return RedirectToAction("PantallaDetalles", "Libros");
+        }
+
+        [HttpPost]
+        public ActionResult Venta(string intIdLibor)
+        {
+            MySession.Current.MensageGeneral = "";
+            MySession.Current.TipoMensage = "";
+
+            MySession.Current.intIdLibor = Convert.ToInt32(intIdLibor);
+            return RedirectToAction("PantallaVenta", "Libros");
+        }
+
+        #endregion
     }
 }

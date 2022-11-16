@@ -5,21 +5,302 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .img-tipo-pago {
+        width: 15%;
+    }
+
+    .container-botones-pasarella button {
+        background: black;
+        color: white;
+        border-radius: 5px;
+        font-size: 15px;
+        border: 2px solid black;
+    }
+
+        .container-botones-pasarella button:hover {
+            background: white;
+            color: black;
+        }
+
+
+    .container-campos-pago input {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #CCCEEE;
+    }
+
+    .accordion-body {
+        padding: 1rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container-campos-pago p, .container-campos-pago h2 {
+        text-align: center;
+    }
+
+    .accordion-collapse {
+        border-top: 5px solid #000;
+        margin-top: 3%;
+    }
+</style>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const comprarLibros = () => {
+        $('#home').hide('fast')
+        $('#ContainerPasarella').show('fast')
+
+
+        let CountLibros = $('#CountLibros').val()
+        let LibrosHtml = `
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Libro</th>
+                  <th scope="col">MXN</th>
+                  <th scope="col">USD</th>
+                  <th scope="col">CANTIDAD</th>
+                </tr>
+              </thead>
+              <tbody>
+        `
+        let TotalCompra = 0;
+        for (var i = 1; i <= CountLibros; i++) {
+            let precio = $('#MxnLibro' + i).text();
+            TotalCompra += parseFloat(precio.slice(6));
+            LibrosHtml += `
+                <tr>
+                  <th scope="row">1</th>
+                  <td>${$('#TituloLibro' + i).html()}</td>
+                  <td>${$('#MxnLibro' + i).html()}</td>
+                  <td>${$('#UsdLibro' + i).html()}</td>
+                  <td>1</td>
+                </tr>
+            `;
+        }
+
+        LibrosHtml += `
+                <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td>TOTAL</td>
+                  <td>MXN $${TotalCompra}</td>
+                </tr>
+            `
+
+
+        LibrosHtml += `</tbody></table>`
+        $('#LibrosParaComprar').html(LibrosHtml)
+
+
+    }
+
+
+    const cancelarCompra = () => {
+        $('#home').show('fast')
+        $('#ContainerPasarella').hide('fast')
+        $('#ContainerTipoPago').hide('fast')
+    }
+
+    const establecerTipoPago = () => {
+        $('#ContainerPasarella').hide('fast')
+        $('#ContainerTipoPago').show('fast')
+    }
+
+    const confirmarPago = () => {
+        $('#ContainerTipoPago').hide('fast')
+        $('#ContainerPagoConfirmado').show('fast')
+        $('#ContainerPagoConfirmado').html(`
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h2>Realizando cobro</h2>
+        `)
+
+        setTimeout(() => {
+            $('#ContainerPagoConfirmado').html(`
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Detalles de su pedido</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Fecha</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">N° de pedido</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Total del pedido</h6>
+
+                    <h5 class="card-title">Información de pago</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Método de pago: MasterCard que termina en 3380</h6>
+
+                    <p class="card-text"></p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                  </div>
+                </div>
+            `)
+        }, 2500)
+
+        setTimeout(() => {
+            $('#ContainerPagoConfirmado').html(`
+            
+            `)
+        }, 3500)
+    }
+
+
+    let estatus = "consultando";
+    const consultandoAlBanco = () => {
+
+        estatusPago((evento, valor) => {
+            if (evento === "consultando") {
+                $('#ContainerPagoConfirmado').html(`
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <h2>Consultando con el banco</h2>
+                `)
+                estatus = "cobrando";
+            } else if (evento === "cobrando") {
+                $('#ContainerPagoConfirmado').html(`
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <h2>Realizando el cobro</h2>
+                `)
+                estatus = "pagado";
+            } else if (evento === "pagado") {
+
+                $('#ContainerPagoConfirmado').html(`
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <h2>Pago realizado</h2>
+                `)
+                estatus = "ninguno";
+            }
+        })
+    }
+
+
+    const estatusPago = (callback) => {
+
+
+
+        var ac = 0
+        while (estatus != "pagado") {
+            setTimeout(() => {
+                console.log(estatus)
+                callback(estatus, ac)
+            }, 2000)
+        }
+        callback(estatus)
+
+    }
+
+
+</script>
+
 <div class="wrapper">
     <section class="main-container">
+
+        <div id="ContainerPasarella" style="display:none;">
+            <h2 class="titulo-seccion">Realizar compra</h2>
+
+            <div class="container-botones-pasarella">
+                <button type="button" onclick="cancelarCompra()" role="button" class="btn"><i class="fas fa-buy"></i> Cancelar</button>
+                <button type="button" onclick="establecerTipoPago()" role="button" class="btn"><i class="fas fa-buy"></i> Establece método de pago</button>
+            </div>
+
+            <div id="LibrosParaComprar"></div>
+        </div>
+
+        <div id="ContainerTipoPago" style="display:none;">
+            <h2 class="titulo-seccion">Método de pago</h2>
+
+            <div class="container-botones-pasarella">
+                <button type="button" onclick="cancelarCompra()" role="button" class="btn"><i class="fas fa-buy"></i> Cancelar</button>
+            </div>
+
+            <div id="TiposDePago">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <img class="img-tipo-pago" src="https://static.vecteezy.com/system/resources/previews/002/575/100/non_2x/credit-card-payment-online-line-style-icon-free-vector.jpg" alt="Pago con tarjetas" />
+                                <div class="container-campos-pago">
+
+
+                                    <div class="container-botones-pasarella">
+                                        <input type="text" name="name" value="" placeholder="Número de tarjeta" />
+                                        <input type="text" name="name" value="" placeholder="Fecha de vencimiento" />
+                                        <input type="text" name="name" value="" placeholder="Código de seguridad" />
+                                        <button type="button" onclick="confirmarPago()" role="button" class="btn"><i class="fas fa-buy"></i> Confirmar pago</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <img class="img-tipo-pago" src="https://thumbs.dreamstime.com/b/icono-del-dep%C3%B3sito-dinero-101028951.jpg" alt="Pago con deposito" />
+                                <div class="container-campos-pago">
+                                    <p>Realiza el deposito al siguiente número bancario</p>
+                                    <h2>86844082736275734</h2>
+
+                                    <p>Referencia</p>
+                                    <h2>Libreril Store Online</h2>
+
+                                    <p>O usa este número de convenio</p>
+                                    <h2>19847361426</h2>
+
+                                    <p>Una vez hayas realizado el deposito, envía tu comprobante a: </p>
+                                    <h2>despositos@librerill.mx</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ContainerPagoConfirmado" style="display:none;">
+
+        </div>
+
         <div class="location" id="home">
             <h2 class="titulo-seccion">Mis Compras</h2>
-            <div class="box">
+            <input type="hidden" id="CountLibros" name="CountLibros" value="@Model.Count()" />
 
+
+            <div class="container-botones-pasarella">
+                <button type="button" onclick="comprarLibros()" role="button" class="btn"><i class="bi bi-currency-dollar"></i> Realizar pago</button>
+            </div>
+
+
+            <hr />
+
+            <div class="box">
                 @if (Model.Count() > 0)
                 {
+                    var index = 1;
+
                     foreach (var item in Model)
                     {
+                        var idTitulo = "TituloLibro" + index;
+                        var idMxn = "MxnLibro" + index;
+                        var idUsd = "UsdLibro" + index;
+                        var idCantidad = "CantidadLibro" + index;
+
                         using (Html.BeginForm())
                         {
                             @Html.AntiForgeryToken()
                             <a href="@Url.Action("EliminarCarrito","Libros", new { idLibro = item.intIdLibor })" class="link-action-icon">
-                               <i class="fas fa-cart-arrow-down boton btn-action-icon"></i>
+                                <i class="fas fa-cart-arrow-down boton btn-action-icon"></i>
                             </a>
 
                             <input type="text" name="intIdLibor" value="@Html.DisplayFor(modelItem => item.intIdLibor)" style="display:none" />
@@ -28,15 +309,17 @@
                                 <img src="@Html.DisplayFor(modelItem => item.strLinkImagenLibro)"
                                      width="210" height="300" alt="Galeria CSS 1" />
                                 <div>
-                                    <h3 class="titulo-libro">@Html.DisplayFor(modelItem => item.NombreLibro)</h3>
+                                    <h3 id="@idTitulo" class="titulo-libro">@Html.DisplayFor(modelItem => item.NombreLibro)</h3>
                                     <br />
-                                    <h3 class="titulo-libro">MXN: <br />$@Html.DisplayFor(modelItem => item.Precio_MXN)</h3>
+                                    <h3 id="@idMxn" class="titulo-libro">MXN: <br />$@Html.DisplayFor(modelItem => item.Precio_MXN)</h3>
                                     <br />
-                                    <h3 class="titulo-libro">USD: <br />$@Html.DisplayFor(modelItem => item.Precio_USD)</h3>
+                                    <h3 id="@idUsd" class="titulo-libro">USD: <br />$@Html.DisplayFor(modelItem => item.Precio_USD)</h3>
                                 </div>
                             </button>
 
                         }
+                        index++;
+
                     }
                 }
             </div>

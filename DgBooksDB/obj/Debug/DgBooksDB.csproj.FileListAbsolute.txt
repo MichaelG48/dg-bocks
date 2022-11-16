@@ -70,3 +70,15 @@ E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CoreCompileInputs.cache
 E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CopyComplete
 E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.dll
 E:\libreri\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.pdb
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.dll.config
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.dll
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\DgBooksDB.pdb
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.dll
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.xml
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.AssemblyReference.cache
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CoreCompileInputs.cache
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.csproj.CopyComplete
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.dll
+C:\Users\Michael\Documents\UTTT\repos\dg-bocks\DgBooksDB\obj\Debug\DgBooksDB.pdb
