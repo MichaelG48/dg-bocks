@@ -129,6 +129,7 @@ namespace DgBooks.Controllers
             return RedirectToAction("PantallaDetalles", "Libros");
         }
 
+
         [HttpPost]
         public ActionResult Busqueda(string inpBusqueda)
         {
@@ -148,7 +149,9 @@ namespace DgBooks.Controllers
 
             return View(ListBusqueda);
         }
-       
+
+   
+
 
 
 

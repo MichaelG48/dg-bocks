@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DgBooksDB;
 
@@ -58,18 +59,29 @@ namespace DgBooksDetails.DgBServices
         {
             List<Libro> libros = new List<Libro>();
             List<Libro> librosBusqueda = new List<Libro>();
+            List<Persona> autores = new List<Persona>();
+            List<Persona> autorBusqueda = new List<Persona>();
+
 
             try
             {
                 using (var context = new DgBooksEntities())
                 {
                     libros = context.Libro.ToList();
+                    autores = context.Persona.ToList();
 
                     foreach (var libro in libros)
                     {
                         if (libro.NombreLibro.Contains(busqueda) || libro.strSinopsis.Contains(busqueda))
                         {
                             librosBusqueda.Add(libro);
+                        }
+                    }
+                    foreach (var autor in autores)
+                    {
+                        if (autor.strNombrePersona.Contains(busqueda) || autor.strApellidoP.Contains(busqueda))
+                        {
+                            autorBusqueda.Add(autor);
                         }
                     }
                 }
@@ -81,6 +93,7 @@ namespace DgBooksDetails.DgBServices
 
             return librosBusqueda;
         }
+
 
         public Libro GetLibroById(int id)
         {
